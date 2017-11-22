@@ -1,3 +1,17 @@
 <%= form_for @recipe do |f| %>
   Title: <%= f.text_field :title %>
+  Ingredients:
+  <%= f.fields_for :ingredients do |ingr| %>
+  <br />
+    <%= ingr.label :ingredient %>
+    <%= ingr.text_field :name %>
+
+    <%= ingr.label :quantity %>
+    <%= ingr.text_field :quantity %>
+  <% end %>
+  <%= f.submit %>
 <% end %>
+
+
+Build a recipe form that accepts two ingredients!
+It should automatically create the new Ingredient objects.
