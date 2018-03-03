@@ -1,3 +1,8 @@
 class Ingredient < ActiveRecord::Base
   belongs_to :recipe
+
+  def ingredients_attributes=(recipe)
+      self.recipe = Recipe.find_or_create_by(name: recipe.name)
+      self.recipe.update(recipe)
+  end
 end
