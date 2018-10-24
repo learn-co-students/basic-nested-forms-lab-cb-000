@@ -1,9 +1,15 @@
-<h2> <%= @recipe.title %></h2>
+<%= form_for @recipe do |f| %>
+  <p>Title: <%= f.text_field :title %></p>
+  <ul>
+    <%= f.fields_for :ingredients do |ingredient| %>
+      <li>
+        <%= ingredient.label :name %>
+        <%= ingredient.text_field :name %><br>
 
-<h3>Ingredients</h2>
-
-<ul>
-<% @recipe.ingredients.each do |ingredient| %>
-  <li><%= "#{ingredient.name} X #{ingredient.quantity}" %></li>
+        <%= ingredient.label :quantity %>
+        <%= ingredient.text_field :quantity %><br>
+      </li>
+    <% end %>
+  </ul>
+  <%= f.submit %>
 <% end %>
-</ul>

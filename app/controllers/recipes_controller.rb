@@ -1,11 +1,4 @@
 class RecipesController < ApplicationController
-  def show
-    @recipe = Recipe.find(params[:id])
-  end
-
-  def index
-    @recipes = Recipe.all
-  end
 
   def new
     @recipe = Recipe.new
@@ -14,7 +7,21 @@ class RecipesController < ApplicationController
   end
 
   def create
-    Recipe.create(recipe_params)
+    recipe = Recipe.create(recipe_params)
+    redirect_to recipes_path
+  end
+
+  def index
+    @recipes = Recipe.all
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    recipe = Recipe.find(params[:id])
+    recipe.update(recipe_params)
     redirect_to recipes_path
   end
 
@@ -23,7 +30,7 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(
       :title,
-      ingredients_attributes: [
+      ingredients_attributes: [:id,
         :name,
         :quantity
       ]
