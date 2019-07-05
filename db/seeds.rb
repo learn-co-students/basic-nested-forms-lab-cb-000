@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Recipe.create(title: "PB & J")
+Ingredient.create([{name: "Peanut Butter", quantity: "1", recipe_id: 1},{name: "Jelly", quantity: "1", recipe_id: 1},{name: "Bread", quantity: "2", recipe_id: 1}])
+
+p "Created #{Recipe.count} Recipe and #{Ingredient.count} Ingredients"
